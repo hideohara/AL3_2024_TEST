@@ -7,7 +7,7 @@
 #include "TextureManager.h"
 #include "WinApp.h"
 
-// 基礎プログラム
+// エンジンの使い方
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
