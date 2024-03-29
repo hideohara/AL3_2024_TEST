@@ -9,6 +9,8 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete sprite_;
 	delete model_;
+	delete debugCamera_;
+
 }
 
 void GameScene::Initialize() {
@@ -33,6 +35,9 @@ void GameScene::Initialize() {
 	// ビュープロジェクションの初期化
 	viewProjection_.Initialize();
 
+	// デバッグカメラの生成
+	debugCamera_ = new DebugCamera(WinApp::kWindowWidth, WinApp::kWindowHeight);
+
 }
 
 void GameScene::Update() {
@@ -49,6 +54,10 @@ void GameScene::Update() {
 	ImGui::Text("X=%f", position.x);
 	ImGui::Text("Y=%f", position.y);
 	ImGui::End();
+
+	// デバッグカメラの更新
+	debugCamera_->Update();
+
 }
 
 void GameScene::Draw() {
@@ -78,7 +87,7 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 
-	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
