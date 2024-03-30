@@ -8,6 +8,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "Player.h"
+#include "Skydome.h"
 #include "DebugCamera.h"
 #include <vector>
 
@@ -62,10 +63,12 @@ private: // メンバ変数
 
 	// 自キャラ
 	Player* player_ = nullptr;
+	Skydome* skydome_ = nullptr;
 
 
 	// ブロックのモデル
 	Model* modelBlock_ = nullptr;
+	Model* modelSkydome_ = nullptr;
 
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
@@ -75,10 +78,4 @@ private: // メンバ変数
 
 	// デバッグカメラ
 	DebugCamera* debugCamera_ = nullptr;
-
-
-
-
-
-
 };

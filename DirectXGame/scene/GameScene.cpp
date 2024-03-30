@@ -12,9 +12,11 @@ GameScene::~GameScene() {
 	// モデルの解放
 	delete model_;
 	delete modelBlock_;
+	delete modelSkydome_;
 
-	// 自キャラクラスの解放
+	// クラスの解放
 	delete player_;
+	delete skydome_;
 
 
 	// ブロックの解放
@@ -43,16 +45,21 @@ void GameScene::Initialize() {
 	// ビュープロジェクションの初期化
 	viewProjection_.Initialize();
 
+	// スカイドームのモデルの生成
+	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
 
 	// 自キャラクラスの生成
 	player_ = new Player();
+	skydome_ = new Skydome();
 
 	// 自キャラクラスの初期化
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
+	skydome_->Initialize(modelSkydome_, &viewProjection_);
 
 
 	// ブロックのモデルの生成
-	modelBlock_ = Model::CreateFromOBJ("cube");
+	modelBlock_ = Model::CreateFromOBJ("cube",true);
+
 
 
 	// 要素数
@@ -91,8 +98,9 @@ void GameScene::Update() {
 
 
 
-	// 自キャラの更新
+	// 更新
 	player_->Update();
+	skydome_->Update();
 
 
 
@@ -161,8 +169,9 @@ void GameScene::Draw() {
 	/// </summary>
 
 
-	// 自キャラの描画
+	// 各クラスの描画
 	player_->Draw();
+	skydome_->Draw();
 
 
 	// ブロックの描画

@@ -1,22 +1,17 @@
 #pragma once
 
-// プレイヤー
-
 #include "Model.h"
 #include "WorldTransform.h"
 
-
-class Player
+class Skydome
 {
-
 public:
-
     /// <summary>
     /// 初期化
     /// </summary>
     /// <param name="model">モデル</param>
-    /// <param name="textureHandle">テクスチャ</param>
-    void Initialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection);
+    void Initialize(Model* model, ViewProjection* viewProjection);
+
 
     /// <summary>
     /// 更新
@@ -28,15 +23,11 @@ public:
     /// </summary>
     void Draw();
 
-
 private:
     // ワールド変換データ
     WorldTransform worldTransform_;
     // モデル
     Model* model_ = nullptr;
-    Model* modelSkydome_ = nullptr;
-    // テクスチャハンドル
-    uint32_t textureHandle_ = 0u;
 
     // ビュープロジェクション
     ViewProjection* viewProjection_ = nullptr;
