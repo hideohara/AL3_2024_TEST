@@ -25,7 +25,7 @@ GameScene::~GameScene() {
 	}
 	worldTransformBlocks_.clear();
 
-
+	delete debugCamera_;
 }
 
 void GameScene::Initialize() {
@@ -81,9 +81,15 @@ void GameScene::Initialize() {
 			worldTransformBlocks_[i][j]->translation_.y = kBlockHeight * i;
 		}
 	}
+
+	// デバッグカメラの生成
+	debugCamera_ = new DebugCamera(WinApp::kWindowWidth, WinApp::kWindowHeight);
+
 }
 
 void GameScene::Update() {
+
+
 
 	// 自キャラの更新
 	player_->Update();
@@ -102,6 +108,29 @@ void GameScene::Update() {
 			worldTransformBlock->UpdateMatrix();
 		}
 	}
+
+#ifdef _DEBUG
+	if (input_->TriggerKey(DIK_0)) {
+		isDebugCameraActive_ = !isDebugCameraActive_;
+	}
+#endif
+
+	// カメラの処理
+	if (isDebugCameraActive_) {
+		debugCamera_->Update();
+		// デバッグカメラのビュー行列;
+		viewProjection_.matView = debugCamera_->GetViewProjection().matView; 
+		// デバッグカメラのプロジェクション行列;
+		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
+		// ビュープロジェクション行列の転送
+		viewProjection_.TransferMatrix();
+	}
+	else {
+		// ビュープロジェクション行列の更新と転送
+		viewProjection_.UpdateMatrix();
+	}
+
+
 }
 
 void GameScene::Draw() {
