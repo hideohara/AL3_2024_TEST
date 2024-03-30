@@ -68,7 +68,8 @@ private: // メンバ変数
 	// ブロックのモデル
 	Model* modelBlock_ = nullptr;
 
-	std::vector<WorldTransform*> worldTransformBlocks_;
+	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
+
 
 
 
