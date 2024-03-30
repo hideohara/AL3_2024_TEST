@@ -2,6 +2,8 @@
 #include "TextureManager.h"
 #include <cassert>
 
+// 2Dアクション　プレイヤー
+
 GameScene::GameScene() {}
 
 // デストラクタ
