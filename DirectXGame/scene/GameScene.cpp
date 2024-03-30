@@ -40,9 +40,10 @@ void GameScene::Initialize() {
 	textureHandle_ = TextureManager::Load("test.png");
 
 	// モデルの生成
-	model_ = Model::Create();
+	model_ = Model::CreateFromOBJ("player", true);
 
 	// ビュープロジェクションの初期化
+	//viewProjection_.farZ = 1000;
 	viewProjection_.Initialize();
 
 	// スカイドームのモデルの生成

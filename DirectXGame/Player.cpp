@@ -26,8 +26,8 @@ void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection* vi
 void Player::Update()
 {
 
-	// 行列を定数バッファに転送
-	worldTransform_.TransferMatrix();
+	// 行列を更新
+	worldTransform_.UpdateMatrix();
 
 
 }
@@ -37,7 +37,7 @@ void Player::Draw()
 {
 
 	// 3Dモデルを描画
-	model_->Draw(worldTransform_, *viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_, *viewProjection_);
 
 
 }

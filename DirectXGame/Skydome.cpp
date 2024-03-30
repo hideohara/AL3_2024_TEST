@@ -13,13 +13,14 @@ void Skydome::Initialize(Model* model, ViewProjection* viewProjection)
 	viewProjection_ = viewProjection;
 
 	// ワールド変数の初期化
+	//worldTransform_.scale_ = {50,50,50};
 	worldTransform_.Initialize();
 }
 
 void Skydome::Update()
 {
-	// 行列を定数バッファに転送
-	worldTransform_.TransferMatrix();
+	// 行列を更新
+	worldTransform_.UpdateMatrix();
 }
 
 void Skydome::Draw()
